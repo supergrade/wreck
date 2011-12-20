@@ -1,0 +1,23 @@
+To run the test:
+
+Go to wreck.lisp
+
+Modify the first line to point to your base directory:
+(defvar **prog-lisp-dir** "c:/prog/wreck/")
+
+Paste the ENTIRE file into TWO command line/Win64 SBCLs
+
+In the FIRST one - call (start-server)
+
+In the SECOND one - call (start-stress-test)
+
+
+The FIRST will now serve a web server on port 82
+
+The SECOND one will keep connecting/disconnecting
+
+If on the SECOND one you call (show-progress), you should see positive growing values for successes AND failures.
+
+Within about 6-10 hours, the SERVER (FIRST) will crash to the debugger:
+* fatal error encountered in SBCL pid 10604(tid 10225392):
+GC invariant lost, file "gencgc.c", line 3525
