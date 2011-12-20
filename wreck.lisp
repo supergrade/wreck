@@ -49,7 +49,7 @@
 (defvar server-already-running nil)
 (defparameter **port** 82)
 
-
+;; Start server
 (defun start-server ()
   (when (not server-already-running)
     (setf server-already-running (make-instance 'easy-acceptor :port **port**))
@@ -88,6 +88,7 @@
 (defparameter **errors** 0)
 (defparameter **successes** 0)
 
+;; Start client
 (defun start-stress-test ()
   (loop for thread from 1 to 100 do
     (let ((thread thread))
@@ -108,10 +109,11 @@
        :name (format nil "Stress Test ~A" thread)))))
 
 
+#|
 (defun run ()
   (start-server)
   (start-stress-test))
-
+|#
 
 (defun get-progress ()
   (format nil "Successes: ~A, Errors: ~A" **successes** **errors**))
@@ -119,6 +121,5 @@
 (defun show-progress ()
   (print (get-progress)))
 
-(run)
 
 
