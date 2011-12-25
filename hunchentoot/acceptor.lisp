@@ -425,8 +425,8 @@ destination determined by (ACCEPTOR-ACCESS-LOG-DESTINATION ACCEPTOR)
 Apache log analysis tools.)"
 
   (with-log-stream (stream (acceptor-access-log-destination acceptor) *access-log-lock*)
-    (format stream "~:[-~@[ (~A)~]~;~:*~A~@[ (~A)~]~] ~:[-~;~:*~A~] [~A] \"~A ~A~@[?~A~] ~
-                    ~A\" ~D ~:[-~;~:*~D~] \"~:[-~;~:*~A~]\" \"~:[-~;~:*~A~]\"~%"
+    ; Code around ~~A\" - took out all the whitespace (newline and spaces) between ~~, it was breaking in Win 7. . . . 
+    (format stream "~:[-~@[ (~A)~]~;~:*~A~@[ (~A)~]~] ~:[-~;~:*~A~] [~A] \"~A ~A~@[?~A~] ~~A\" ~D ~:[-~;~:*~D~] \"~:[-~;~:*~A~]\" \"~:[-~;~:*~A~]\"~%"
             (remote-addr*)
             (header-in* :x-forwarded-for)
             (authorization)
