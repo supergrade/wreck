@@ -1,6 +1,11 @@
 
 
-(defvar **prog-lisp-dir** "c:/prog/wreck/")
+(defvar **prog-dir**
+  #+(or win32 windows-host) "c:/prog/"
+  #-(or win32 windows-host) "~/prog/"
+  )
+
+(defvar **prog-lisp-dir** (concatenate 'string **prog-dir** "wreck/"))
 
 (defun prog-lisp-dir (dir)
   (concatenate 'string **prog-lisp-dir** dir))
@@ -47,7 +52,7 @@
 (use-package '(:hunchentoot :heresy))
 
 (defvar server-already-running nil)
-(defparameter **port** 82)
+(defparameter **port** 3030)
 
 ;; Start server
 (defun start-server ()
